@@ -17,18 +17,26 @@ namespace ParallelProgramming
             }
         }
 
+        public static void Write(object o)
+        {
+            int i = 1000;
+            while (i-- > 0)
+            {
+                Console.Write(o);
+            }
+        }
+
+        public static int TextLength(object o)
+        {
+            Console.WriteLine($"\nTask with id {Task.CurrentId} processing object {o}...");
+            return o.ToString().Length;
+        }
+
         static void Main(string[] args)
         {
-            // Create a task
-            Task.Factory.StartNew(() => Write('.'));    // Creating and starting at the same time
-            // Another way of making a task
-            //Make an instance
-            var t = new Task(() => Write('?')); // We havent started yet
-            // There is a difference between these implementations 
+            Task t = new Task(Write, "hello");
             t.Start();
-
-            Write('-'); // On the main thread
-
+            Task.Factory.StartNew(Write, 123);
 
             Console.WriteLine("Main program done.");
             Console.ReadKey();
