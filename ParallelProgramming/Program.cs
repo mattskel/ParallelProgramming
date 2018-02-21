@@ -10,7 +10,7 @@ namespace ParallelProgramming
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
+            Console.WriteLine("Commit Master01");
             Console.ReadKey();
         }
     }
