@@ -34,9 +34,14 @@ namespace ParallelProgramming
 
         static void Main(string[] args)
         {
-            Task t = new Task(Write, "hello");
-            t.Start();
-            Task.Factory.StartNew(Write, 123);
+
+            string text1 = "testing", text2 = "this";
+            var task1 = new Task<int>(TextLength, text1);
+            task1.Start();
+            Task<int> task2 = Task.Factory.StartNew<int>(TextLength, text2);
+
+            Console.WriteLine($"Length of '{text1}' is {task1.Result}");
+            Console.WriteLine($"Length of '{text2}' is {task2.Result}");
 
             Console.WriteLine("Main program done.");
             Console.ReadKey();
